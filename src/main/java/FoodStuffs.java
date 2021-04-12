@@ -3,7 +3,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FoodStuffs {
-
     String data;
     Integer errorCount=0;
     String regex;
@@ -26,7 +25,7 @@ public class FoodStuffs {
         int foodCount = 0;
         for (int i = 0; foodMatcher.find(); i++) {
             foodCount++;
-        }
+            }
         return foodCount;
     }
 
@@ -54,11 +53,9 @@ public class FoodStuffs {
         setErrorCount();
     }
 
-
     public String countToString(){
         return "Name: "+name+"     	 Seen: "+foodCount()+" Times";
     }
-
 
     public void foodString(){
         System.out.println(countToString());

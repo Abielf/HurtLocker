@@ -2,15 +2,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GroceryList {
-
-
     Integer errorCount=0;
     FoodStuffs cookies;
     FoodStuffs bread;
     FoodStuffs apples;
     FoodStuffs milk;
     String data;
-
 
     GroceryList(String mess){
     cookies=new FoodStuffs(mess,"C..kies.Price.....", "Cookies");
@@ -19,7 +16,6 @@ public class GroceryList {
     milk=new FoodStuffs(mess,"Mi..;pri.e:....", "Milk");
     data=mess;
     }
-
 
     public void printFoods(){
         cookies.foodString();
@@ -33,12 +29,10 @@ public class GroceryList {
         countUnNamed();
         System.out.println("\nErrors         	 	 seen: "+errorCount+" times");
     }
-    /**/
+    
     public void countUnNamed(){
             Pattern missing = Pattern.compile("..M.:[^a-zA-Z]");
             Matcher missingno=missing.matcher(data);
             while(missingno.find()){errorCount++;}
     }
-
-
 }
