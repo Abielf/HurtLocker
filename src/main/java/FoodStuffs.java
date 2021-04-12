@@ -19,7 +19,6 @@ public class FoodStuffs {
     public Matcher foodMatch() {
         Pattern foodPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         return foodPattern.matcher(data);
-
     }
 
     public int foodCount(){

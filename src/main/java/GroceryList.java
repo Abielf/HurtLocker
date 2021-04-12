@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class GroceryList {
 
 
@@ -27,9 +30,15 @@ public class GroceryList {
         errorCount+= apples.getErrorCount();
         milk.foodString();
         errorCount+= milk.getErrorCount();
-        System.out.println(errorCount);
+        countUnNamed();
+        System.out.println("\nErrors         	 	 seen: "+errorCount+" times");
+    }
+    /**/
+    public void countUnNamed(){
+            Pattern missing = Pattern.compile("..M.:[^a-zA-Z]");
+            Matcher missingno=missing.matcher(data);
+            while(missingno.find()){errorCount++;}
     }
 
-    
 
 }
