@@ -29,7 +29,7 @@ public class GroceryList {
         countUnNamed();
         System.out.println("\nErrors         	 	 seen: "+errorCount+" times");
     }
-    
+
     public void countUnNamed(){
             Pattern missing = Pattern.compile("..M.:[^a-zA-Z]");
             Matcher missingno=missing.matcher(data);
