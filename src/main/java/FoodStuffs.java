@@ -4,7 +4,6 @@ import java.util.regex.Pattern;
 
 public class FoodStuffs {
     String data;
-    Integer errorCount=0;
     String regex;
     String name;
     HashMap<String, Integer> priceList = new HashMap<String, Integer>();
@@ -50,7 +49,6 @@ public class FoodStuffs {
             System.out.println("Price:   "+p+"        Seen: "+priceList.get(p)+" Times");
             System.out.println("-------------        -------------");
         }
-        setErrorCount();
     }
 
     public String countToString(){
@@ -63,10 +61,6 @@ public class FoodStuffs {
         printList();
     }
 
-    public void setErrorCount(){
-        errorCount=countPrices()-foodCount();
-        if(errorCount<0){errorCount*=-1;}
-    }
 
     public Integer countPrices(){
         Integer totalPrices=0;
@@ -75,6 +69,4 @@ public class FoodStuffs {
         }
         return totalPrices;
     }
-
-    public Integer getErrorCount(){return errorCount;}
 }

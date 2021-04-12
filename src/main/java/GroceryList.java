@@ -2,7 +2,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GroceryList {
-    Integer errorCount=0;
     FoodStuffs cookies;
     FoodStuffs bread;
     FoodStuffs apples;
@@ -19,20 +18,29 @@ public class GroceryList {
 
     public void printFoods(){
         cookies.foodString();
-        errorCount+=cookies.getErrorCount();
         bread.foodString();
-        errorCount+= bread.getErrorCount();
         apples.foodString();
-        errorCount+= apples.getErrorCount();
         milk.foodString();
-        errorCount+= milk.getErrorCount();
-        countUnNamed();
-        System.out.println("\nErrors         	 	 seen: "+errorCount+" times");
+        System.out.println("\nErrors         	 	 seen: "+totalError()+" times");
     }
 
-    public void countUnNamed(){
-            Pattern missing = Pattern.compile("..M.:[^a-zA-Z]");
-            Matcher missingno=missing.matcher(data);
-            while(missingno.find()){errorCount++;}
+    public Integer totalError(){
+        return countUnNamed()+countUnPriced();
     }
+
+    public Integer countUnNamed(){
+            Pattern missing = Pattern.compile("..M.:[^a-zA-Z]");
+            Integer eCount=0;
+            Matcher missingno=missing.matcher(data);
+            while(missingno.find()){eCount++;}
+            return eCount;
+    }
+    public Integer countUnPriced(){
+        Pattern missing = Pattern.compile(";....e:[^0-9]");
+        Integer pCount=0;
+        Matcher priceless=missing.matcher(data);
+        while(priceless.find()){pCount++;}
+        return pCount;
+    }
+
 }

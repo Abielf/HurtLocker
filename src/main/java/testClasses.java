@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-public class testFoodStuffs {
+public class testClasses {
 
     @Test
     public void foodTestCnstructor(){
@@ -24,11 +24,10 @@ public class testFoodStuffs {
 
     @Test
     public void errorTest(){
-        FoodStuffs food=new FoodStuffs("cat1.96plplcatplplcat0.34plplplcat1.96tcatlklklkllkcaththtcat8.33","cat....","");
-        Integer expected=3;
-        food.priceFinder();
-        food.setErrorCount();
-        Assert.assertEquals(expected, food.getErrorCount());
+        GroceryList food=new GroceryList("NAME:90abMc:28;jimse:nah;ungae:free;type:oka");
+        Integer expected=4;
+
+        Assert.assertEquals(expected, food.totalError());
     }
 
 
