@@ -25,22 +25,14 @@ public class GroceryList {
     }
 
     public Integer totalError(){
-        return countUnNamed()+countUnPriced();
+        return countErrorType("..M.:[^a-zA-Z]")+countErrorType(";....e:[^0-9]");
     }
 
-    public Integer countUnNamed(){
-            Pattern missing = Pattern.compile("..M.:[^a-zA-Z]");
+    public Integer countErrorType(String reg){
+            Pattern missing = Pattern.compile(reg);
             Integer eCount=0;
             Matcher missingno=missing.matcher(data);
             while(missingno.find()){eCount++;}
             return eCount;
     }
-    public Integer countUnPriced(){
-        Pattern missing = Pattern.compile(";....e:[^0-9]");
-        Integer pCount=0;
-        Matcher priceless=missing.matcher(data);
-        while(priceless.find()){pCount++;}
-        return pCount;
-    }
-
 }

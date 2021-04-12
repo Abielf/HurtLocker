@@ -61,7 +61,6 @@ public class FoodStuffs {
         printList();
     }
 
-
     public Integer countPrices(){
         Integer totalPrices=0;
         for(String p: priceList.keySet()){
