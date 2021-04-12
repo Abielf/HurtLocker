@@ -8,11 +8,11 @@ public class testClasses {
         FoodStuffs food=new FoodStuffs("A lot of words go here","","");
         Assert.assertTrue(food instanceof FoodStuffs);
     }
+
     @Test
-    public void foodCountTest(){
-        FoodStuffs food=new FoodStuffs("catmlmlmlmlmlcatlmlmlmcatlmlmlm","cat","");
-        Assert.assertEquals(3, food.foodCount());
-    }
+    public void groceryConstructorTest(){
+        GroceryList food=new GroceryList("This should pass Methinks");
+        Assert.assertTrue(food instanceof GroceryList);}
 
     @Test
     public void priceTest(){

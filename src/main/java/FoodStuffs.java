@@ -14,27 +14,17 @@ public class FoodStuffs {
         name=n;
     }
 
-    public Matcher foodMatch() {
-        Pattern foodPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        return foodPattern.matcher(data);
-    }
-
-    public int foodCount(){
-        Matcher foodMatcher=foodMatch();
-        int foodCount = 0;
-        for (int i = 0; foodMatcher.find(); i++) {
-            foodCount++;
-            }
-        return foodCount;
+    public Matcher matchMaker(String in, String reg) {
+        Pattern foodPattern = Pattern.compile(reg);
+        return foodPattern.matcher(in);
     }
 
     public void priceFinder(){
-        Matcher foodMatcher=foodMatch();
-        Pattern pricePattern = Pattern.compile("[0-9]\\.[0-9][0-9]");
+        Matcher foodMatcher=matchMaker(data, regex);
         Matcher priceMatch;
         int count=0;
         for (int i = 0; foodMatcher.find(); i++) {
-            priceMatch=pricePattern.matcher(foodMatcher.group());
+            priceMatch=matchMaker(foodMatcher.group(),"[0-9]\\.[0-9][0-9]");
             while (priceMatch.find()){
                 if(priceList.containsKey(priceMatch.group())){
                     count = priceList.get(priceMatch.group());
@@ -43,22 +33,15 @@ public class FoodStuffs {
             }
         }
     }
-    public void printList(){
+
+    public void foodString(){
         priceFinder();
+        System.out.println("Name: "+name+"          Seen: "+countPrices()+" Times");
+        System.out.println("=============     \t =============");
         for(String p:priceList.keySet()){
             System.out.println("Price:   "+p+"        Seen: "+priceList.get(p)+" Times");
             System.out.println("-------------        -------------");
         }
-    }
-
-    public String countToString(){
-        return "Name: "+name+"     	 Seen: "+foodCount()+" Times";
-    }
-
-    public void foodString(){
-        System.out.println(countToString());
-        System.out.println("=============     \t =============");
-        printList();
     }
 
     public Integer countPrices(){

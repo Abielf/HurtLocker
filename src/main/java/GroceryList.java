@@ -9,8 +9,8 @@ public class GroceryList {
     String data;
 
     GroceryList(String mess){
-    cookies=new FoodStuffs(mess,"C..kies.Price.....", "Cookies");
-    bread=new FoodStuffs(mess,"Br..D.Price.....", "Bread");
+    cookies=new FoodStuffs(mess,"C..k.e.;....e:....", "Cookies");
+    bread=new FoodStuffs(mess,"Br..D;....e:....", "Bread");
     apples=new FoodStuffs(mess,"apPles;p..ce:....", "Apples");
     milk=new FoodStuffs(mess,"Mi..;pri.e:....", "Milk");
     data=mess;
