@@ -13,7 +13,7 @@ public class FoodStuffs {
         data = in;
         name=n;
     }
-    public void priceFinder(){
+    public HashMap priceFinder(){
         Matcher foodMatcher=Pattern.compile(regex).matcher(data);
         Matcher priceMatch;
         int count=0;
@@ -25,7 +25,7 @@ public class FoodStuffs {
                     priceList.put(priceMatch.group(),count+1);
                 }else {priceList.put(priceMatch.group(),1);}
             }
-        }
+        }return priceList;
     }
     public void foodString(){
         priceFinder();

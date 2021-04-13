@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 public class testClasses {
 
     @Test
@@ -20,6 +22,14 @@ public class testClasses {
         Integer expected=4;
         food.priceFinder();
         Assert.assertEquals(expected, food.countPrices());
+    }
+
+    @Test
+    public void listTest(){
+        FoodStuffs food=new FoodStuffs("cat1.96plplplplcat0.34plplplcat1.96ththtcat8.33","cat....","");
+        HashMap<String, Integer> mappy=food.priceFinder();
+        Integer expected = 1;
+        Assert.assertEquals(expected, mappy.get("0.34"));
     }
 
     @Test
