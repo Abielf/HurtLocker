@@ -13,18 +13,12 @@ public class FoodStuffs {
         data = in;
         name=n;
     }
-
-    public Matcher matchMaker(String in, String reg) {
-        Pattern foodPattern = Pattern.compile(reg);
-        return foodPattern.matcher(in);
-    }
-
     public void priceFinder(){
-        Matcher foodMatcher=matchMaker(data, regex);
+        Matcher foodMatcher=Pattern.compile(regex).matcher(data);
         Matcher priceMatch;
         int count=0;
         for (int i = 0; foodMatcher.find(); i++) {
-            priceMatch=matchMaker(foodMatcher.group(),"[0-9]\\.[0-9][0-9]");
+            priceMatch=Pattern.compile("[0-9]\\.[0-9][0-9]").matcher(foodMatcher.group());
             while (priceMatch.find()){
                 if(priceList.containsKey(priceMatch.group())){
                     count = priceList.get(priceMatch.group());
@@ -33,7 +27,6 @@ public class FoodStuffs {
             }
         }
     }
-
     public void foodString(){
         priceFinder();
         System.out.println("Name: "+name+"          Seen: "+countPrices()+" Times");
@@ -43,12 +36,9 @@ public class FoodStuffs {
             System.out.println("-------------        -------------");
         }
     }
-
     public Integer countPrices(){
         Integer totalPrices=0;
-        for(String p: priceList.keySet()){
-            totalPrices+=priceList.get(p);
-        }
+        for(String p: priceList.keySet()){   totalPrices+=priceList.get(p);   }
         return totalPrices;
     }
 }

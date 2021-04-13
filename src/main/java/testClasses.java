@@ -27,7 +27,7 @@ public class testClasses {
         GroceryList food=new GroceryList("NAME:90abMc:28;jimse:nah;ungae:free;type:oka");
         Integer expected=4;
 
-        Assert.assertEquals(expected, food.totalError());
+        Assert.assertEquals(expected, food.countErrorType());
     }
 
 

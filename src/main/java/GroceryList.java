@@ -15,23 +15,16 @@ public class GroceryList {
     milk=new FoodStuffs(mess,"Mi..;pri.e:....", "Milk");
     data=mess;
     }
-
     public void printFoods(){
         cookies.foodString();
         bread.foodString();
         apples.foodString();
         milk.foodString();
-        System.out.println("\nErrors         	 	 seen: "+totalError()+" times");
+        System.out.println("\nErrors         	 	 seen: "+countErrorType()+" times");
     }
-
-    public Integer totalError(){
-        return countErrorType("..M.:[^a-zA-Z]")+countErrorType(";....e:[^0-9]");
-    }
-
-    public Integer countErrorType(String reg){
-            Pattern missing = Pattern.compile(reg);
+    public Integer countErrorType(){
             Integer eCount=0;
-            Matcher missingno=missing.matcher(data);
+            Matcher missingno=Pattern.compile("(..M.:[^a-zA-Z])|(;....e:[^0-9])").matcher(data);
             while(missingno.find()){eCount++;}
             return eCount;
     }
