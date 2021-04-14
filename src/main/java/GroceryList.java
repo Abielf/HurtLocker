@@ -9,7 +9,7 @@ public class GroceryList {
     data=mess;
     }
 
-    public HashMap priceFinder(String reg, String text){
+    public HashMap priceFinder(String reg, String text){ //returns hashmap of a food types prices
         Matcher foodMatcher=Pattern.compile(reg).matcher(text);
         HashMap<String, Integer> priceList = new HashMap<String, Integer>();
         while (foodMatcher.find()) {
@@ -19,37 +19,31 @@ public class GroceryList {
                     priceList.put(priceMatch.group(), priceList.get(priceMatch.group()) + 1);
                 }else {priceList.put(priceMatch.group(),1);}
             }
-        }
-        return priceList;
+        } return priceList;
     }
-
-    public void foodString(String text, String reg, String name){
-        HashMap<String, Integer> priceList = priceFinder(reg, text);
-        System.out.println("Name: "+name+"          Seen: "+countPrices(priceList)+" Times");
-        System.out.println("=============     \t =============");
-        for(String p:priceList.keySet()){
-            System.out.println("Price:   "+p+"        Seen: "+priceList.get(p)+" Times");
-            System.out.println("-------------        -------------");
-        }
+    public void printGroceries(){//prints out grocery list, with errors
+        HashMap<String, Integer> priceList;
+        String[] foods={"C..k.e.;....e:....","Cookies","Br..D;....e:...."," Bread ","apPles;p..ce:....",
+                " Apples","Mi..;pri.e:...."," Milk  "};
+        for(int i=0;i<foods.length;i+=2){
+            priceList = priceFinder(foods[i], data);
+            System.out.println("Name:"+foods[i+1]+"         Seen: "+countPrices(priceList)+" Times");
+            System.out.println("=============     \t =============");
+            for(String p:priceList.keySet()){
+                System.out.println("Price:   "+p+"        Seen: "+priceList.get(p)+" Times");
+                System.out.println("-------------        -------------");
+            }
+        } System.out.println("\nErrors         	 	 seen: "+errorCounter()+" times");
     }
-
-    public Integer countPrices(HashMap<String, Integer> prices){
+    public Integer countPrices(HashMap<String, Integer> prices){//counts up prices for a food item
         Integer totalPrices=0;
         for(String p: prices.keySet()) totalPrices+=prices.get(p);
         return totalPrices;
     }
-
-    public void printGroceries(){
-        foodString(data,"C..k.e.;....e:....", "Cookies");
-        foodString(data,"Br..D;....e:....", "Bread");
-        foodString(data,"apPles;p..ce:....", "Apples");
-        foodString(data,"Mi..;pri.e:....", "Milk");
-        System.out.println("\nErrors         	 	 seen: "+errorCounter()+" times");
-    }
-    public Integer errorCounter(){
+    public Integer errorCounter(){ //counts every instance of an empty name or price field
             Integer eCount=0;
-            Matcher missingno=Pattern.compile("(..M.:[^a-zA-Z])|(;....e:[^0-9])").matcher(data);
-            while(missingno.find()){eCount++;}
+            Matcher missingNo=Pattern.compile("(..M.:[^a-zA-Z])|(;....e:[^0-9])").matcher(data);
+            while(missingNo.find()){eCount++;}
             return eCount;
     }
 }
