@@ -20,9 +20,9 @@ public class GroceryList {
         bread.foodString();
         apples.foodString();
         milk.foodString();
-        System.out.println("\nErrors         	 	 seen: "+countErrorType()+" times");
+        System.out.println("\nErrors         	 	 seen: "+errorCounter()+" times");
     }
-    public Integer countErrorType(){
+    public Integer errorCounter(){
             Integer eCount=0;
             Matcher missingno=Pattern.compile("(..M.:[^a-zA-Z])|(;....e:[^0-9])").matcher(data);
             while(missingno.find()){eCount++;}

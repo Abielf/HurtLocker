@@ -15,17 +15,14 @@ public class FoodStuffs {
     }
     public HashMap priceFinder(){
         Matcher foodMatcher=Pattern.compile(regex).matcher(data);
-        Matcher priceMatch;
-        int count=0;
-        for (int i = 0; foodMatcher.find(); i++) {
-            priceMatch=Pattern.compile("[0-9]\\.[0-9][0-9]").matcher(foodMatcher.group());
-            while (priceMatch.find()){
+        while (foodMatcher.find()) {
+            Matcher priceMatch=Pattern.compile("[0-9]\\.[0-9][0-9]").matcher(foodMatcher.group());
+            if (priceMatch.find()){
                 if(priceList.containsKey(priceMatch.group())){
-                    count = priceList.get(priceMatch.group());
-                    priceList.put(priceMatch.group(),count+1);
+                    priceList.put(priceMatch.group(), priceList.get(priceMatch.group()) + 1);
                 }else {priceList.put(priceMatch.group(),1);}
             }
-        }return priceList;
+        }return priceList;  //Returns priceList only for testing purposes
     }
     public void foodString(){
         priceFinder();
@@ -38,7 +35,7 @@ public class FoodStuffs {
     }
     public Integer countPrices(){
         Integer totalPrices=0;
-        for(String p: priceList.keySet()){   totalPrices+=priceList.get(p);   }
+        for(String p: priceList.keySet()) totalPrices+=priceList.get(p);
         return totalPrices;
     }
 }
