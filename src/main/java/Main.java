@@ -9,6 +9,6 @@ public class Main {
     public static void main(String[] args) throws Exception{
         String output = (new Main()).readRawDataToString();
         GroceryList foods= new GroceryList(output);
-        foods.printFoods();
+        foods.printGroceries();
     }
 }
