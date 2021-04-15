@@ -13,14 +13,15 @@ public class GroceryList {
         Matcher foodMatcher=Pattern.compile(reg).matcher(text);
         HashMap<String, Integer> priceList = new HashMap<String, Integer>();
         while (foodMatcher.find()) {
-            Matcher priceMatch= Pattern.compile("[0-9]\\.[0-9][0-9]").matcher(foodMatcher.group());
-            if (priceMatch.find()){
-                if(priceList.containsKey(priceMatch.group())){
-                    priceList.put(priceMatch.group(), priceList.get(priceMatch.group()) + 1);
-                }else {priceList.put(priceMatch.group(),1);}
+            Matcher priceMatcher= Pattern.compile("[0-9]\\.[0-9][0-9]").matcher(foodMatcher.group());
+            if (priceMatcher.find()){
+                if(priceList.containsKey(priceMatcher.group())){
+                    priceList.put(priceMatcher.group(), priceList.get(priceMatcher.group()) + 1);
+                }else priceList.put(priceMatcher.group(),1);
             }
         } return priceList;
     }
+
     public void printGroceries(){//prints out grocery list, with errors
         HashMap<String, Integer> priceList;
         String[] foods={"C..k.e.;....e:....","Cookies","Br..D;....e:...."," Bread ","apPles;p..ce:....",
@@ -35,6 +36,7 @@ public class GroceryList {
             }
         } System.out.println("\nErrors         	 	 seen: "+errorCounter()+" times");
     }
+
     public Integer countPrices(HashMap<String, Integer> prices){//counts up prices for a food item
         Integer totalPrices=0;
         for(String p: prices.keySet()) totalPrices+=prices.get(p);
