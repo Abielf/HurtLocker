@@ -1,3 +1,9 @@
+My best and most efficient use of RegEx, reducing the entire application to a sigle class outside Main, and under 70 lines of total code.
+
+--Abiel F.
+
+
+----------------------------------------------------------------------------------------------------------------
 ## WELCOME TO THE HURT LOCKER
 
 By this time you should have been introduced to Java Strings, Exceptions, Unit Testing, and Regex.
